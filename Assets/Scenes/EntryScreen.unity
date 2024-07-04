@@ -229,9 +229,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 643652944}
-        m_TargetAssemblyTypeName: PuzzleSolver, Assembly-CSharp
-        m_MethodName: SolvePuzzle
+      - m_Target: {fileID: 643652946}
+        m_TargetAssemblyTypeName: WordEntryUI, Assembly-CSharp
+        m_MethodName: PuzzleSolveButtonCallback
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -707,9 +707,9 @@ GameObject:
   - component: {fileID: 643652943}
   - component: {fileID: 643652942}
   - component: {fileID: 643652941}
-  - component: {fileID: 643652944}
   - component: {fileID: 643652945}
   - component: {fileID: 643652946}
+  - component: {fileID: 643652944}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -810,7 +810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1047fb76c2433e4fadd37dda5566cd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  entry: {fileID: 643652946}
 --- !u!114 &643652945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,6 +834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20bac0eadfd92164b8636e00373fb948, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  solver: {fileID: 643652944}
   entryFields:
   - {fileID: 1567415735}
   - {fileID: 750582241}
