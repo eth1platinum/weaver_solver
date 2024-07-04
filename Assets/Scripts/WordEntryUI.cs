@@ -8,7 +8,7 @@ using UnityEngine.EventSystems;
 
 public class WordEntryUI : MonoBehaviour
 {
-
+    [SerializeField] PuzzleSolver solver;
     public GameObject[] entryFields = new GameObject[8];
 
     public string startWord = "";
@@ -85,6 +85,11 @@ public class WordEntryUI : MonoBehaviour
             return false;
         }
 
+    }
+
+    public void PuzzleSolveButtonCallback() {
+        GetWordEntry();
+        solver.SolvePuzzle(startWord, endWord);
     }
 
     bool ValidateTextEntry(string enteredText) {

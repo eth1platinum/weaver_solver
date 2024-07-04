@@ -4,20 +4,15 @@ using UnityEngine;
 
 public class PuzzleSolver : MonoBehaviour
 {
-    [SerializeField] WordEntryUI entry;
     WordList wordlist = new WordList();
     
-    public void SolvePuzzle()
+    public void SolvePuzzle(string searchword, string targetword)
     {
         Queue<string> wordqueue = new Queue<string>();
-        bool ret = entry.GetWordEntry();
 
-        if (ret == false) {
-            return;
-        }
-
-        string searchword = entry.startWord.ToLower();
-        string targetword = entry.endWord.ToLower();
+        searchword = searchword.ToLower();
+        targetword = targetword.ToLower();
+        
         string letters = "abcdefghijklmnopqrstuvwxyz"; // todo change this to use regex
         Dictionary<string, int> wordmap = new Dictionary<string, int>();
         Dictionary<string, string> foundmap = new Dictionary<string, string>();
