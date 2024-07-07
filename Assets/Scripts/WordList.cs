@@ -341,6 +341,7 @@ public class WordList : MonoBehaviour
         "braw",
         "bray",
         "brew",
+        "brig",
         "brim",
         "brin",
         "brio",
