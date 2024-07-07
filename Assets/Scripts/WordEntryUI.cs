@@ -89,7 +89,10 @@ public class WordEntryUI : MonoBehaviour
 
     public void PuzzleSolveButtonCallback() {
         GetWordEntry();
-        solver.SolvePuzzle(startWord, endWord);
+        List<string> solution = solver.SolvePuzzle(startWord, endWord);
+        for (int i = 0; i < solution.Count; i++) { // todo delete this once working
+            Debug.Log(solution[i]);
+        }
     }
 
     bool ValidateTextEntry(string enteredText) {

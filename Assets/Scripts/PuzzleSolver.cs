@@ -6,8 +6,8 @@ public class PuzzleSolver : MonoBehaviour
 {
     WordList wordlist = new WordList();
     
-    public void SolvePuzzle(string searchword, string targetword)
-    {
+    public List<string> SolvePuzzle(string searchword, string targetword)
+    { // todo comment and tidy this function once working
         Queue<string> wordqueue = new Queue<string>();
 
         searchword = searchword.ToLower();
@@ -16,6 +16,7 @@ public class PuzzleSolver : MonoBehaviour
         string letters = "abcdefghijklmnopqrstuvwxyz"; // todo change this to use regex
         Dictionary<string, int> wordmap = new Dictionary<string, int>();
         Dictionary<string, string> foundmap = new Dictionary<string, string>();
+        List<string> solutionlist = new List<string>();
         int dictionarysize = wordlist.dictionarywords.Length;
         for (int wordno = 0; wordno < dictionarysize; wordno++)
         {
@@ -36,12 +37,15 @@ public class PuzzleSolver : MonoBehaviour
                     {
                         foundmap[newsearchwordString] = currentsearchword;
                         string result = newsearchwordString;
+                        solutionlist.Add(targetword);
                         while (foundmap[result] != searchword)
                         {
-                            Debug.Log(foundmap[result]);
+                            solutionlist.Add(foundmap[result]);
                             result = foundmap[result];
                         }
-                        return;
+                        solutionlist.Add(searchword);
+                        solutionlist.Reverse();
+                        return solutionlist;
                     }
                     bool wordexists = false;
                     if (wordmap.ContainsKey(newsearchwordString))
@@ -68,9 +72,9 @@ public class PuzzleSolver : MonoBehaviour
                     }
                 }
             }
-            Debug.Log("\n");
         }
         Debug.Log("solution not found");
+        return solutionlist;
     }
 }
 
