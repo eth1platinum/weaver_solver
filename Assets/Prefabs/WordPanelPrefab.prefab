@@ -130,7 +130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7317792617734865073, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Name
-      value: LetterPrefab
+      value: LetterPrefab1
       objectReference: {fileID: 0}
     - target: {fileID: 7317792617734865078, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Pivot.x
@@ -232,7 +232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7317792617734865073, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Name
-      value: LetterPrefab (1)
+      value: LetterPrefab2
       objectReference: {fileID: 0}
     - target: {fileID: 7317792617734865078, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Pivot.x
@@ -334,7 +334,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7317792617734865073, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Name
-      value: LetterPrefab (3)
+      value: LetterPrefab4
       objectReference: {fileID: 0}
     - target: {fileID: 7317792617734865078, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Pivot.x
@@ -436,7 +436,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7317792617734865073, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Name
-      value: LetterPrefab (2)
+      value: LetterPrefab3
       objectReference: {fileID: 0}
     - target: {fileID: 7317792617734865078, guid: 8a24606b831a5d441912da353c7b65e3, type: 3}
       propertyPath: m_Pivot.x
