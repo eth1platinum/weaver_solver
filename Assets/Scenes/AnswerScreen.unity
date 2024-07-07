@@ -206,9 +206,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 643652944}
-        m_TargetAssemblyTypeName: AnswerGenUI, Assembly-CSharp
-        m_MethodName: GenerateTextLine
+      - m_Target: {fileID: 643652945}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadWordEntryUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
