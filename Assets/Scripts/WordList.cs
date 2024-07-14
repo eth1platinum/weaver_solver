@@ -1629,6 +1629,7 @@ public class WordList : MonoBehaviour
         "lipa",
         "lira",
         "lire",
+        "lisp",
         "list",
         "lite",
         "lits",
