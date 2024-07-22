@@ -23,7 +23,7 @@ public class WordEntryUI : MonoBehaviour
     public void ControlTextEntry(GameObject parent) {
         int fieldIndex = -1;
         for (int i = 0; i < entryFields.Length; i++) {
-            if (GameObject.ReferenceEquals( entryFields[i], parent)) {
+            if (GameObject.ReferenceEquals(entryFields[i], parent)) {
                 fieldIndex = i;
                 break;
             }
