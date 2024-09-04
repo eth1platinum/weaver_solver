@@ -11,6 +11,7 @@ public class WordEntryUI : MonoBehaviour
     [SerializeField] PuzzleSolver solver;
     public static List<string> solution;
     public GameObject[] entryFields = new GameObject[8];
+    public bool editingText = false; // todo remove this when not needed
 
     public string startWord = "";
     public string endWord = "";
@@ -29,29 +30,56 @@ public class WordEntryUI : MonoBehaviour
             }
         }
 
-        
-        if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length == 1) {
-            entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.ToUpper();
+        if (editingText) {
+            return;
         }
 
-        if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length > 1) {
+        editingText = true;
+
+        int numFieldCharacters = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length;
+
+        entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.ToUpper();
+
+        if (numFieldCharacters > 1) {
+            string stringTail = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Substring(1, numFieldCharacters - 1);
             entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Substring(0, 1);
+            if (fieldIndex < entryFields.Length - 1) {
+                entryFields[fieldIndex+1].GetComponent<TMP_InputField>().text = stringTail;
+                entryFields[fieldIndex+1].GetComponent<TMP_InputField>().Select();
+                entryFields[fieldIndex+1].GetComponent<TMP_InputField>().MoveToEndOfLine(false, true);
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex > 0) {
-            entryFields[fieldIndex-1].GetComponent<TMP_InputField>().Select();
-            return;
+        if (numFieldCharacters == 0) {
+            if (fieldIndex > 0) {
+                entryFields[fieldIndex-1].GetComponent<TMP_InputField>().Select();
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex == 0) {
-            entryFields[fieldIndex].GetComponent<TMP_InputField>().Select();
-            return;
-        }
+        editingText = false;
 
-        if (fieldIndex < entryFields.Length - 1) {
-            entryFields[fieldIndex+1].GetComponent<TMP_InputField>().Select();
-            return;
-        }
+        // if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length == 1) {
+        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.ToUpper();
+        // }
+
+        // if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length > 1) {
+        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Substring(0, 1);
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex > 0) {
+        //     entryFields[fieldIndex-1].GetComponent<TMP_InputField>().Select();
+        //     return;
+        // }
+
+        // if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex == 0) {
+        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().Select();
+        //     return;
+        // }
+
+        // if (fieldIndex < entryFields.Length - 1) {
+        //     entryFields[fieldIndex+1].GetComponent<TMP_InputField>().Select();
+        //     return;
+        // }
     
     }
 
@@ -95,9 +123,9 @@ public class WordEntryUI : MonoBehaviour
 
     bool ValidateTextEntry(string enteredText) {
         
-        if (enteredText.Length != 1) {
-            return false;
-        }
+        // if (enteredText.Length != 1) {
+        //     return false;
+        // }
 
         if (!Regex.IsMatch(enteredText, @"^[a-zA-Z]+$")) {
             return false;
