@@ -844,6 +844,7 @@ MonoBehaviour:
   - {fileID: 1047238506}
   - {fileID: 332642299}
   - {fileID: 1435890637}
+  editingText: 0
   startWord: 
   endWord: 
 --- !u!1 &750582241 stripped
@@ -1428,7 +1429,7 @@ PrefabInstance:
       objectReference: {fileID: 140236810}
     - target: {fileID: 3076924477394249977, guid: e28f9a39bbd043243b00062f68062e16, type: 3}
       propertyPath: m_OnFocusSelectAll
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3076924477394249977, guid: e28f9a39bbd043243b00062f68062e16, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -1680,7 +1681,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9211922773600037413, guid: e28f9a39bbd043243b00062f68062e16, type: 3}
       propertyPath: m_OnFocusSelectAll
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9211922773600037413, guid: e28f9a39bbd043243b00062f68062e16, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
