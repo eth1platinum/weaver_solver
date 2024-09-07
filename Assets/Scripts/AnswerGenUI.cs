@@ -16,24 +16,21 @@ public class AnswerGenUI : MonoBehaviour
     }
 
     void LoadSolution() {
-        for (int i = 0; i < WordEntryUI.solution.Count; i++) { // todo delete this once working
+        for (int i = 0; i < WordEntryUI.solution.Count; i++) {
             GenerateTextLine(WordEntryUI.solution[i]);
-            Debug.Log(WordEntryUI.solution[i]);
         }
     }
 
     private void SetScrolling(GameObject child)
     {
-
-        // todo tidy these up once working
-
         child.AddComponent(typeof(ScrollRect));
         Transform parent = child.transform.parent;
         ScrollRect parentScroll = parent.GetComponent<ScrollRect>();
 
+        // set scrollrect properties for parent
+
         if (parentScroll != null)
         {
-            // set scrollrect properties for parent
             child.GetComponent<ScrollRect>().content = parentScroll.content;
             child.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
             child.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
@@ -41,53 +38,26 @@ public class AnswerGenUI : MonoBehaviour
             child.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
         }
 
-        // set scrollrect for children
-        GameObject letter1 = child.transform.Find("LetterPrefab1").gameObject;
-        GameObject letter2 = child.transform.Find("LetterPrefab2").gameObject;
-        GameObject letter3 = child.transform.Find("LetterPrefab3").gameObject;
-        GameObject letter4 = child.transform.Find("LetterPrefab4").gameObject;
-        letter1.AddComponent(typeof(ScrollRect));
-        letter1.GetComponent<ScrollRect>().content = parentScroll.content;
-        letter1.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
-        letter1.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
-        letter1.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
-        letter1.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
-        letter1.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
+        // copy parent scrollrect properties to children
 
-        letter2.AddComponent(typeof(ScrollRect));
-        letter2.GetComponent<ScrollRect>().content = parentScroll.content;
-        letter2.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
-        letter2.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
-        letter2.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
-        letter2.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
-        letter2.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
+        for (int i = 0; i < child.transform.childCount; i++) {
+            GameObject letter = child.transform.Find("LetterPrefab" + (i+1)).gameObject;
 
-        letter3.AddComponent(typeof(ScrollRect));
-        letter3.GetComponent<ScrollRect>().content = parentScroll.content;
-        letter3.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
-        letter3.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
-        letter3.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
-        letter3.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
-        letter3.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
-
-        letter4.AddComponent(typeof(ScrollRect));
-        letter4.GetComponent<ScrollRect>().content = parentScroll.content;
-        letter4.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
-        letter4.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
-        letter4.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
-        letter4.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
-        letter4.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
+            letter.AddComponent(typeof(ScrollRect));
+            letter.GetComponent<ScrollRect>().content = parentScroll.content;
+            letter.GetComponent<ScrollRect>().viewport = parentScroll.viewport;
+            letter.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
+            letter.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
+            letter.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
+            letter.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
+        }
     }
 
-    void AddWordToTextField(GameObject instance, string word) { // todo tidy these up once working
-        GameObject letter1 = instance.transform.Find("LetterPrefab1").gameObject;
-        GameObject letter2 = instance.transform.Find("LetterPrefab2").gameObject;
-        GameObject letter3 = instance.transform.Find("LetterPrefab3").gameObject;
-        GameObject letter4 = instance.transform.Find("LetterPrefab4").gameObject;
-        letter1.GetComponent<TMP_InputField>().text = word[0].ToString();
-        letter2.GetComponent<TMP_InputField>().text = word[1].ToString();
-        letter3.GetComponent<TMP_InputField>().text = word[2].ToString();
-        letter4.GetComponent<TMP_InputField>().text = word[3].ToString();
+    void AddWordToTextField(GameObject instance, string word) {
+        for (int i = 0; i < word.Length; i++) {
+            GameObject letter = instance.transform.Find("LetterPrefab" + (i+1)).gameObject;
+            letter.GetComponent<TMP_InputField>().text = word[i].ToString();
+        }
     }
 
     public void GenerateTextLine(string word) {
