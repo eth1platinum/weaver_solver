@@ -18,7 +18,12 @@ public class WordEntryUI : MonoBehaviour
 
     public void Start()
     {
-        entryFields[0].GetComponent<TMP_InputField>().Select();
+        // entryFields[0].GetComponent<TMP_InputField>().Select();
+        SelectField(entryFields[0]);
+    }
+
+    public void SelectField(GameObject field) {
+        field.GetComponent<TMP_InputField>().Select();
     }
 
     public void ControlTextEntry(GameObject parent) {

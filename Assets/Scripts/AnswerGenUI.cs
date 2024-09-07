@@ -52,6 +52,7 @@ public class AnswerGenUI : MonoBehaviour
         letter1.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
         letter1.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
         letter1.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
+        letter1.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
 
         letter2.AddComponent(typeof(ScrollRect));
         letter2.GetComponent<ScrollRect>().content = parentScroll.content;
@@ -59,6 +60,7 @@ public class AnswerGenUI : MonoBehaviour
         letter2.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
         letter2.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
         letter2.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
+        letter2.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
 
         letter3.AddComponent(typeof(ScrollRect));
         letter3.GetComponent<ScrollRect>().content = parentScroll.content;
@@ -66,6 +68,7 @@ public class AnswerGenUI : MonoBehaviour
         letter3.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
         letter3.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
         letter3.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
+        letter3.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
 
         letter4.AddComponent(typeof(ScrollRect));
         letter4.GetComponent<ScrollRect>().content = parentScroll.content;
@@ -73,6 +76,7 @@ public class AnswerGenUI : MonoBehaviour
         letter4.GetComponent<ScrollRect>().horizontal = parentScroll.horizontal;
         letter4.GetComponent<ScrollRect>().inertia = parentScroll.inertia;
         letter4.GetComponent<ScrollRect>().movementType = parentScroll.movementType;
+        letter4.GetComponent<TMP_InputField>().textViewport = parentScroll.viewport;
     }
 
     void AddWordToTextField(GameObject instance, string word) { // todo tidy these up once working
