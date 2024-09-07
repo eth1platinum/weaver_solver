@@ -11,14 +11,13 @@ public class WordEntryUI : MonoBehaviour
     [SerializeField] PuzzleSolver solver;
     public static List<string> solution;
     public GameObject[] entryFields = new GameObject[8];
-    public bool editingText = false; // todo remove this when not needed
+    public bool editingText = false;
 
     public string startWord = "";
     public string endWord = "";
 
     public void Start()
     {
-        // entryFields[0].GetComponent<TMP_InputField>().Select();
         SelectField(entryFields[0]);
     }
 
@@ -62,63 +61,32 @@ public class WordEntryUI : MonoBehaviour
         }
 
         editingText = false;
-
-        // if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length == 1) {
-        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.ToUpper();
-        // }
-
-        // if (entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Length > 1) {
-        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().text = entryFields[fieldIndex].GetComponent<TMP_InputField>().text.Substring(0, 1);
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex > 0) {
-        //     entryFields[fieldIndex-1].GetComponent<TMP_InputField>().Select();
-        //     return;
-        // }
-
-        // if (Input.GetKeyDown(KeyCode.Backspace) && fieldIndex == 0) {
-        //     entryFields[fieldIndex].GetComponent<TMP_InputField>().Select();
-        //     return;
-        // }
-
-        // if (fieldIndex < entryFields.Length - 1) {
-        //     entryFields[fieldIndex+1].GetComponent<TMP_InputField>().Select();
-        //     return;
-        // }
-    
     }
 
     public bool GetWordEntry() {
-        // todo use a loop here once working
-        string top1 = entryFields[0].GetComponent<TMP_InputField>().text;
-        string top2 = entryFields[1].GetComponent<TMP_InputField>().text;
-        string top3 = entryFields[2].GetComponent<TMP_InputField>().text;
-        string top4 = entryFields[3].GetComponent<TMP_InputField>().text;
-        string bot1 = entryFields[4].GetComponent<TMP_InputField>().text;
-        string bot2 = entryFields[5].GetComponent<TMP_InputField>().text;
-        string bot3 = entryFields[6].GetComponent<TMP_InputField>().text;
-        string bot4 = entryFields[7].GetComponent<TMP_InputField>().text;
 
-        bool ret = ValidateTextEntry(top1);
-        ret &= ValidateTextEntry(top2);
-        ret &= ValidateTextEntry(top3);
-        ret &= ValidateTextEntry(top4);
-        ret &= ValidateTextEntry(bot1);
-        ret &= ValidateTextEntry(top2);
-        ret &= ValidateTextEntry(top3);
-        ret &= ValidateTextEntry(top4);
+        for (int i = 0; i < entryFields.Length; i++) {
+            string newLetter = entryFields[i].GetComponent<TMP_InputField>().text;
+            bool ret = ValidateTextEntry(newLetter);
 
-        if (ret) {
-            startWord = top1 + top2 + top3 + top4;
-            endWord = bot1 + bot2 + bot3 + bot4;
-            Debug.Log("start word: " + startWord + ", end word: " + endWord);
-            return true;
-        }
-        else {
-            Debug.Log("Text input is invalid");
-            return false;
+            if (ret) {
+                if (i < (entryFields.Length / 2)) {
+                    startWord = startWord + newLetter;
+                }
+                else {
+                    endWord = endWord + newLetter;
+                }
+            }
+            else {
+                Debug.Log("Text input is invalid");
+                startWord = "";
+                endWord = "";
+                return false;
+            }
         }
 
+        Debug.Log("start word: " + startWord + ", end word: " + endWord);
+        return true;
     }
 
     public void PuzzleSolveButtonCallback() {
@@ -128,9 +96,9 @@ public class WordEntryUI : MonoBehaviour
 
     bool ValidateTextEntry(string enteredText) {
         
-        // if (enteredText.Length != 1) {
-        //     return false;
-        // }
+        if (enteredText.Length != 1) {
+            return false;
+        }
 
         if (!Regex.IsMatch(enteredText, @"^[a-zA-Z]+$")) {
             return false;
