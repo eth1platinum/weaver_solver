@@ -40,11 +40,12 @@ public class PuzzleSolver : MonoBehaviour
                 {
                     char[] newsearchword = currentsearchword.ToCharArray();
                     newsearchword[searchwordletterindex] = letters[newletterindex];
-                    string newsearchwordString = new string(newsearchword);
-                    if (newsearchwordString == targetword)
-                    {
-                        foundmap[newsearchwordString] = currentsearchword;
-                        string result = newsearchwordString;
+                    string newsearchwordstring = new string(newsearchword);
+
+                    if (newsearchwordstring == targetword)
+                    { // if the target has been found, traverse the solution list to find shortest path
+                        foundmap[newsearchwordstring] = currentsearchword;
+                        string result = newsearchwordstring;
                         solutionlist.Add(targetword);
                         while (foundmap[result] != searchword)
                         {
@@ -56,27 +57,27 @@ public class PuzzleSolver : MonoBehaviour
                         return solutionlist;
                     }
                     bool wordexists = false;
-                    if (wordmap.ContainsKey(newsearchwordString))
-                    {
+                    if (wordmap.ContainsKey(newsearchwordstring))
+                    { // if word is valid but is not the target word
                         wordexists = true;
                     }
                     bool wordalreadyfound = false;
-                    if (foundmap.ContainsKey(newsearchwordString))
-                    {
+                    if (foundmap.ContainsKey(newsearchwordstring))
+                    { // if word has been found previously (in less or equal number of moves)
                         wordalreadyfound = true;
                     }
-                    if (!wordexists || newsearchwordString == currentsearchword)
-                    {
+                    if (!wordexists || newsearchwordstring == currentsearchword)
+                    { // if word is invalid or the same as the previous word then ignore
                         continue;
                     }
                     else if (wordexists && wordalreadyfound)
-                    {
+                    { // if word exists and has already been found (todo duplicate of above?)
                         continue;
                     }
                     else
-                    {
-                        foundmap[newsearchwordString] = currentsearchword;
-                        wordqueue.Enqueue(newsearchwordString);
+                    { // if word is valid and not already found then add to foundmap as key with previous word as value
+                        foundmap[newsearchwordstring] = currentsearchword;
+                        wordqueue.Enqueue(newsearchwordstring);
                     }
                 }
             }
