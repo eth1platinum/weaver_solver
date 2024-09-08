@@ -5,33 +5,41 @@ using UnityEngine;
 public class PuzzleSolver : MonoBehaviour
 {
     WordList wordlist = new WordList();
-    
-    public List<string> SolvePuzzle(string searchword, string targetword)
-    { // todo comment and tidy this function once working
-        Queue<string> wordqueue = new Queue<string>();
 
-        searchword = searchword.ToLower();
-        targetword = targetword.ToLower();
-        
-        string letters = "abcdefghijklmnopqrstuvwxyz"; // todo change this to use regex
-        Dictionary<string, int> wordmap = new Dictionary<string, int>();
-        Dictionary<string, string> foundmap = new Dictionary<string, string>();
-        List<string> solutionlist = new List<string>();
+    public void InitWordList(Dictionary<string, int> wordmap) {
         int dictionarysize = wordlist.dictionarywords.Length;
         for (int wordno = 0; wordno < dictionarysize; wordno++)
         {
             wordmap[wordlist.dictionarywords[wordno]] = wordno;
         }
+    }
+    
+    public List<string> SolvePuzzle(string searchword, string targetword)
+    {
+        Queue<string> wordqueue = new Queue<string>();
+
+        searchword = searchword.ToLower();
+        targetword = targetword.ToLower();
+        
+        const string letters = "abcdefghijklmnopqrstuvwxyz";
+        Dictionary<string, int> wordmap = new Dictionary<string, int>();
+        Dictionary<string, string> foundmap = new Dictionary<string, string>();
+        List<string> solutionlist = new List<string>();
+
+        InitWordList(wordmap);
+
         wordqueue.Enqueue(searchword);
+
         while (wordqueue.Count > 0)
         {
             string currentsearchword = wordqueue.Dequeue();
-            for (int i = 0; i < currentsearchword.Length; i++)
+
+            for (int searchwordletterindex = 0; searchwordletterindex < currentsearchword.Length; searchwordletterindex++)
             {
-                for (int j = 0; j < letters.Length; j++)
+                for (int newletterindex = 0; newletterindex < letters.Length; newletterindex++)
                 {
                     char[] newsearchword = currentsearchword.ToCharArray();
-                    newsearchword[i] = letters[j];
+                    newsearchword[searchwordletterindex] = letters[newletterindex];
                     string newsearchwordString = new string(newsearchword);
                     if (newsearchwordString == targetword)
                     {
