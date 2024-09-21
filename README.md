@@ -6,7 +6,7 @@ These puzzles can be found at https://wordwormdormdork.com.
 
 # Installation
 
-Currently no install wizard exists for this project, you will have to pull the repository locally and open in unity to access and run.
+Use the install wizard WeaverSolverSetupv1.0.exe to download the application.
 
 # Usage
 
